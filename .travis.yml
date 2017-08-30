@@ -7,18 +7,32 @@ cache:
 
 matrix:
     include:
-        - apt:
-            sources:
-              - ubuntu-toolchain-r-test
-            packages:
-              - g++-5
-          env:
-              - BUILD_NAME=build1 THREAD=x CC=gcc-5 CXX=gcc-5
-              - BUILD_NAME=build2 THREAD=y CC=gcc-5 CXX=gcc-5
+    #-------------------
+    # GCC 5
+    #-------------------
+    - apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-5
+      env:
+      - BUILD_NAME=build1 THREAD=x
+      - CC=gcc-5 CXX=gcc-5
+    - apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-5
+      env:
+      - BUILD_NAME=build2 THREAD=y
+      - CVARS="CC=gcc-5 && CXX=gcc-5"
 
 before_install: echo "==== before install ${BUILD_NAME}"
 install:        echo "====        install ${BUILD_NAME}"
 
-before_script: echo  "==== before script ${BUILD_NAME}"
+before_script:
+    - echo  "==== before script ${BUILD_NAME}"
+    - echo $CVARS 
+
 script: ./build.sh
 
