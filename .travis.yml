@@ -5,34 +5,42 @@ dist: trusty
 cache:
     apt: true
 
+# There is no concise way to build a matrix with different compiler versions
+# So take the manual approach of using include to explicitly create each case
+
 matrix:
     include:
     #-------------------
-    # GCC 5
+    # GCC 6
     #-------------------
-    - apt:
-        sources:
-          - ubuntu-toolchain-r-test
-        packages:
-          - g++-5
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
       env:
-          - BUILD_NAME=build1 THREAD=x
-          - CC=gcc-5 CXX=gcc-5
-          - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
-    - apt:
-        sources:
-          - ubuntu-toolchain-r-test
-        packages:
-          - g++-5
+        - BUILD_NAME=build1 THREAD=x
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
       env:
-          - BUILD_NAME=build2 THREAD=y
-          - CVARS="CC=gcc-5 && CXX=gcc-5"
-          - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+        - BUILD_NAME=build2 THREAD=y
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
 
 before_install:
-    - echo "==== before install ${BUILD_NAME}"
-    - eval "${MATRIX_EVAL}"
-install:        echo "====        install ${BUILD_NAME}"
+  - echo "==== before install ${BUILD_NAME}"
+  - eval "${MATRIX_EVAL}"
+
+install:
+  - echo "====        install ${BUILD_NAME}"
 
 before_script:
     - echo  "==== before script ${BUILD_NAME}"
