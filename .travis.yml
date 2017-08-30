@@ -10,9 +10,11 @@ apt:
         - ubuntu-toolchain-r-test
 
 env:
-    matrix:
-        - BUILD_NAME="build1"
-        - BUILD_NAME="build2"
+    - BUILD_NAME="build1"
+    - BUILD_NAME="build2"
+#   matrix:
+#       - BUILD_NAME="build1"
+#       - BUILD_NAME="build2"
 
 apt:
     - packages:
