@@ -12,27 +12,30 @@ matrix:
     #-------------------
     - apt:
         sources:
-        - ubuntu-toolchain-r-test
+          - ubuntu-toolchain-r-test
         packages:
-        - g++-5
+          - g++-5
       env:
-      - BUILD_NAME=build1 THREAD=x
-      - CC=gcc-5 CXX=gcc-5
+          - BUILD_NAME=build1 THREAD=x
+          - CC=gcc-5 CXX=gcc-5
+          - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
     - apt:
         sources:
-        - ubuntu-toolchain-r-test
+          - ubuntu-toolchain-r-test
         packages:
-        - g++-5
+          - g++-5
       env:
-      - BUILD_NAME=build2 THREAD=y
-      - CVARS="CC=gcc-5 && CXX=gcc-5"
+          - BUILD_NAME=build2 THREAD=y
+          - CVARS="CC=gcc-5 && CXX=gcc-5"
+          - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
 
-before_install: echo "==== before install ${BUILD_NAME}"
+before_install:
+    - echo "==== before install ${BUILD_NAME}"
+    - eval "${MATRIX_EVAL}"
 install:        echo "====        install ${BUILD_NAME}"
 
 before_script:
     - echo  "==== before script ${BUILD_NAME}"
-    - echo $CVARS 
 
 script: ./build.sh
 
