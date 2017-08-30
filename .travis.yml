@@ -6,19 +6,19 @@ cache:
     apt: true
 
 apt:
-    sources:
-        - ubuntu-toolchain-r-test
-    packages:
-        - g++-5
+    matrix:
+        - sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+        - sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
 
 env:
     - BUILD_NAME="build1" THREAD="x"
     - BUILD_NAME="build2" THREAD="y"
-
-matrix:
-    include:
-        - 
-
 
 before_install: echo "==== before install ${BUILD_NAME}"
 install:        echo "====        install ${BUILD_NAME}"
