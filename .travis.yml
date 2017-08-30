@@ -5,20 +5,16 @@ dist: trusty
 cache:
     apt: true
 
-apt:
-    matrix:
-        - sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-5
-        - sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-6
-
-env:
-    - BUILD_NAME="build1" THREAD="x"
-    - BUILD_NAME="build2" THREAD="y"
+matrix:
+    include:
+        - apt:
+            sources:
+              - ubuntu-toolchain-r-test
+            packages:
+              - g++-5
+          env:
+              - BUILD_NAME=build1 THREAD=x CC=gcc-5 CXX=gcc-5
+              - BUILD_NAME=build2 THREAD=y CC=gcc-5 CXX=gcc-5
 
 before_install: echo "==== before install ${BUILD_NAME}"
 install:        echo "====        install ${BUILD_NAME}"

@@ -1,7 +1,9 @@
 echo ==== build $BUILD_NAME with thread $THREAD
 
+$CXX --version
+
 exe=${BUILD_NAME}.exe
-g++ test.cpp -o ${exe}
+$CXX test.cpp -o ${exe}
 
 ./${exe} || exit 1
 
