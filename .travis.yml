@@ -5,20 +5,14 @@ dist: trusty
 cache:
     apt: true
 
-# There is no concise way to build a matrix with different compiler versions
-# So take the manual approach of using include to explicitly create each case
-
+# By default use gcc5 for building the test suite.
+# Additional targets are added to test other compilers below.
 addons:
-    - apt:
+    apt:
         sources:
            - ubuntu-toolchain-r-test
         packages:
            - g++-5
-    - apt:
-        sources:
-           - ubuntu-toolchain-r-test
-        packages:
-           - g++-7
 
 env:
     - BUILD_NAME=alpha THREAD=1 MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
@@ -27,9 +21,7 @@ env:
 
 matrix:
     include:
-    #-------------------
-    # GCC 6
-    #-------------------
+    ################### GCC 6
     - os: linux
       addons:
         apt:
@@ -40,17 +32,17 @@ matrix:
       env:
         - BUILD_NAME=build1 THREAD=x
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
-
+    ################### GCC 7
     - os: linux
       addons:
         apt:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-6
+            - g++-7
       env:
         - BUILD_NAME=build2 THREAD=y
-        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
 
 before_install:
   - echo "==== before install ${BUILD_NAME}"
