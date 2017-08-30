@@ -1,0 +1,28 @@
+language: cpp
+sudo: false
+os: linux
+dist: trusty
+cache:
+    apt: true
+
+apt:
+    sources:
+        - ubuntu-toolchain-r-test
+
+env:
+    matrix:
+        - BUILD_NAME="build1"
+        - BUILD_NAME="build2"
+
+apt:
+    - packages:
+        - g++-5
+    - packages:
+        - g++-6
+
+before_install: echo "==== before install"
+install: echo "==== install"
+
+before_script: echo "==== before script"
+script: ./build.sh
+
