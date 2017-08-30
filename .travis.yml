@@ -8,6 +8,11 @@ cache:
 # There is no concise way to build a matrix with different compiler versions
 # So take the manual approach of using include to explicitly create each case
 
+env:
+    - BUILD_NAME=alpha THREAD=1
+    - BUILD_NAME=beta THREAD=2
+    - BUILD_NAME=gamma THREAD=3
+
 matrix:
     include:
     #-------------------
