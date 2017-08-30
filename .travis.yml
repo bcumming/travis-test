@@ -9,11 +9,16 @@ cache:
 # So take the manual approach of using include to explicitly create each case
 
 addons:
-    apt:
+    - apt:
         sources:
            - ubuntu-toolchain-r-test
         packages:
            - g++-5
+    - apt:
+        sources:
+           - ubuntu-toolchain-r-test
+        packages:
+           - g++-7
 
 env:
     - BUILD_NAME=alpha THREAD=1 MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
