@@ -8,10 +8,17 @@ cache:
 # There is no concise way to build a matrix with different compiler versions
 # So take the manual approach of using include to explicitly create each case
 
+addons:
+    apt:
+        sources:
+           - ubuntu-toolchain-r-test
+        packages:
+           - g++-5
+
 env:
-    - BUILD_NAME=alpha THREAD=1
-    - BUILD_NAME=beta THREAD=2
-    - BUILD_NAME=gamma THREAD=3
+    - BUILD_NAME=alpha THREAD=1 MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+    - BUILD_NAME=beta  THREAD=2 MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+    - BUILD_NAME=gamma THREAD=3 MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
 
 matrix:
     include:
@@ -52,3 +59,5 @@ before_script:
 
 script: ./build.sh
 
+notifications:
+    email: false
