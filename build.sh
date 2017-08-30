@@ -1,6 +1,7 @@
 echo ==== build $BUILD_NAME
 
-g++ test.cpp -o ${BUILD_NAME}.exe
+exe=${BUILD_NAME}.exe
+g++ test.cpp -o ${exe}
 
-./test.exe || exit 1
+./${exe} || exit 1
 
