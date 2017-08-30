@@ -10,8 +10,8 @@ apt:
         - ubuntu-toolchain-r-test
 
 env:
-    - BUILD_NAME="build1"
-    - BUILD_NAME="build2"
+    - BUILD_NAME="build1" THREAD="x"
+    - BUILD_NAME="build2" THREAD="y"
 #   matrix:
 #       - BUILD_NAME="build1"
 #       - BUILD_NAME="build2"
@@ -24,8 +24,5 @@ before_install: echo "==== before install"
 install: echo "==== install"
 
 before_script: echo "==== before script"
-script:
-    - ./build.sh
-    - echo "hello world"
-    - ls
+script: ./build.sh
 
