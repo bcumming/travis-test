@@ -20,9 +20,9 @@ matrix:
         - 
 
 
-before_install: echo ${BUILD_NAME}
-install: echo ${BUILD_NAME}
+before_install: echo "==== before install ${BUILD_NAME}"
+install:        echo "====        install ${BUILD_NAME}"
 
-before_script: echo "==== before script"
+before_script: echo  "==== before script ${BUILD_NAME}"
 script: ./build.sh
 
