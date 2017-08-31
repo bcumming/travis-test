@@ -13,7 +13,7 @@ which mpiexec
 which mpirun
 
 mpiexe=${BUILD_NAME}.mpi.exe
-mpicc test.cpp -o ${mpiexe}
+mpicc test_mpi.cpp -o ${mpiexe} || exit 1
 
 mpirun -n 2 ./${mpiexe} || exit 1
 
