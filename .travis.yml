@@ -16,36 +16,19 @@ addons:
 
 env:
     - BUILD_NAME=alpha THREAD=1 MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
-    - BUILD_NAME=beta  THREAD=2 MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
     - BUILD_NAME=gamma THREAD=3 MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
 
 matrix:
     include:
     ################### GCC 6
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-6
       env:
         - BUILD_NAME=build1 THREAD=x
-        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
-    ################### GCC 7
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-7
-      env:
-        - BUILD_NAME=build2 THREAD=y
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
+        - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
 
 before_install:
   - echo "==== before install ${BUILD_NAME}"
+  # Travis sets CC and CXX after the "env" variables are set, and before the
+  # before_install step.
   - eval "${MATRIX_EVAL}"
 
 install:
