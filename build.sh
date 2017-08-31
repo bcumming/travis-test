@@ -29,7 +29,7 @@ mpicc --version
 mpicxx --version
 
 mpiexe=${BUILD_NAME}.mpi.exe
-mpicc test_mpi.cpp -o ${mpiexe} || exit 1
+mpicxx test_mpi.cpp -o ${mpiexe} || exit 1
 
 mpirun -n 2 ./${mpiexe} || exit 1
 
