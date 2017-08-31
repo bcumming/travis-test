@@ -15,8 +15,11 @@ which mpirun
 mpicc --version
 mpicxx --version
 
+mpicc -cc gcc-5 --version
+mpicxx -cxx g++-5 --version
+
 mpiexe=${BUILD_NAME}.mpi.exe
-mpicc test_mpi.cpp -o ${mpiexe} || exit 1
+mpicc -cc gcc-5 test_mpi.cpp -o ${mpiexe} || exit 1
 
 mpirun -n 2 ./${mpiexe} || exit 1
 
