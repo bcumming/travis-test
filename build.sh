@@ -23,8 +23,8 @@ echo
 echo ++++++++++++++++++++++++++++++++++++++
 echo + compiler under wrapper after fiddling
 echo ++++++++++++++++++++++++++++++++++++++
-OMPI_CC=`which gcc-5`
-OMPI_CXX=`which g++-5`
+export OMPI_CC=gcc-5
+export OMPI_CXX=g++-5
 mpicc --version
 mpicxx --version
 
