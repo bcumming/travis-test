@@ -11,8 +11,10 @@ addons:
     apt:
         sources:
            - ubuntu-toolchain-r-test
+           - mpich
         packages:
            - g++-5
+           - mpich
 
 env:
     - BUILD_NAME=alpha THREAD=1 MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
