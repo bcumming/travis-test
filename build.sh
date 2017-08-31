@@ -12,14 +12,24 @@ which mpicxx
 which mpiexec
 which mpirun
 
+echo
+echo ++++++++++++++++++++++++++++++++++++++
+echo + default compiler under wrapper
+echo ++++++++++++++++++++++++++++++++++++++
 mpicc --version
 mpicxx --version
 
-mpicc -cc=${CC} --version
-mpicxx -cxx=${CXX} --version
+echo
+echo ++++++++++++++++++++++++++++++++++++++
+echo + compiler under wrapper after fiddling
+echo ++++++++++++++++++++++++++++++++++++++
+OMPI_CC=`which gcc-5`
+OMPI_CXX=`which g++-5`
+mpicc --version
+mpicxx --version
 
 mpiexe=${BUILD_NAME}.mpi.exe
-mpicc -cc=${CXX} test_mpi.cpp -o ${mpiexe} || exit 1
+mpicc test_mpi.cpp -o ${mpiexe} || exit 1
 
 mpirun -n 2 ./${mpiexe} || exit 1
 
