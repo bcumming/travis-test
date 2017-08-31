@@ -7,6 +7,11 @@ $CXX test.cpp -o ${exe}
 
 ./${exe} || exit 1
 
+which mpicc
+which mpicxx
+which mpiexec
+which mpirun
+
 mpiexe=${BUILD_NAME}.mpi.exe
 mpicc test.cpp -o ${mpiexe}
 

@@ -14,10 +14,11 @@ addons:
         packages:
            - g++-5
            - mpich
+           - libmpich-dev
 
-env:
-    - BUILD_NAME=alpha THREAD=1 MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
-    - BUILD_NAME=gamma THREAD=3 MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+#env:
+#   - BUILD_NAME=alpha THREAD=1 MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
+#   - BUILD_NAME=gamma THREAD=3 MATRIX_EVAL="CC=gcc-5 && CXX=g++-5"
 
 matrix:
     include:
